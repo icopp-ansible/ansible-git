@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Ian Copp
+  description: Install git via Homebrew.
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+  galaxy_tags:
+    - system
+
+dependencies:
+  - role: icopp.homebrew
+    when: ansible_os_family == "Darwin"

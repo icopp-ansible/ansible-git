@@ -1,0 +1,31 @@
+---
+- name: Install git via Homebrew
+  package:
+    name: git
+    state: latest
+  when: ansible_os_family == "Darwin"
+
+- vars_prompt:
+    - name: git_user_name
+      prompt: Enter a git user name
+      when: ansible_os_family == "Darwin" and git_user_name == "" and set_git_user_info == true
+
+    - name: git_user_email
+      prompt: Enter a git user email
+      when: ansible_os_family == "Darwin" and git_user_email == "" and set_git_user_info == true
+
+    - name: git_editor
+      prompt: Enter a git editor
+      when: ansible_os_family == "Darwin" and git_editor == "" and set_git_editor == true
+
+- name: Add global user name to git
+  command: git config --global user.name "{{ git_user_name }}"
+  when: ansible_os_family == "Darwin" and set_git_user_info == true
+
+- name: Add global user email to git
+  command: git config --global user.email "{{ git_user_email }}"
+  when: ansible_os_family == "Darwin" and set_git_user_info == true
+
+- name: Add global edit to git
+  command: git config --global core.editor "{{ git_editor }}"
+  when: ansible_os_family == "Darwin" and set_git_editor == true
