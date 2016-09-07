@@ -4,16 +4,9 @@ Install git via Homebrew.
 
 ## Role Variables
 
-User-related variables:
-
-* `set_git_user_info`: Defaults to false.
-* `git_user_name`: Will be prompted for if not set and `set_git_user_info` is true.
-* `git_user_email`: Will be prompted for if not set and `set_git_user_info` is true.
-
-Miscellaneous variables:
-
-* `set_git_editor`: Defaults to false.
-* `git_editor`: Will be prompted for if not set and `set_git_editor` is true.
+* `git_user_name`: If supplied, will be used to set a global `user.name` value for git.
+* `git_user_email`: If supplied, will be used to set a global `user.email` value for git.
+* `git_editor`: If supplied, will be used to set a global `core.editor` value for git.
 
 ## Dependencies
 
@@ -31,10 +24,8 @@ Miscellaneous variables:
   - hosts: all
     roles:
       - role: icopp.git
-        set_git_user_info: true
         git_user_name: xxxxx
         git_user_email: xxxxx
-        set_git_editor: true
         git_editor: xxxxx
 ```
 
